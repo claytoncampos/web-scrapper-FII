@@ -1,0 +1,10 @@
+# Environments
+.env
+.venv
+env_fii/
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
