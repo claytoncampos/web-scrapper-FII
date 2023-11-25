@@ -8,3 +8,6 @@ env_fii/
 __pycache__/
 *.py[cod]
 *$py.class
+
+## other files
+*.xlsx
