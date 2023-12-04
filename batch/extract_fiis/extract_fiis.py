@@ -19,6 +19,8 @@ BTN_SELECT_ALL_COLS = '/html/body/div[6]/div[1]/div/div[2]/div[2]/ul/li[1]/label
 COLUMN = '/html/body/div[6]/div[2]/div/div/div/table/thead/tr/th' #30
 ROW = '/html/body/div[6]/div[2]/div/div/div/table/tbody/tr' #430
 
+#ttt = '.default-fiis-table__container__table'
+
 #BTN_POPUP,BTN_SELECT_COLS,BTN_SELECT_ALL_COLS,COLUMN,ROW
 #GET FIIS
 def get_fiis():
@@ -36,6 +38,8 @@ def get_fiis():
     N_COLS = len(browser.find_elements(By.XPATH,COLUMN))
 #    time.sleep(1)
     N_ROWS = len(browser.find_elements(By.XPATH,ROW))
+#    table = browser.find_element(By.CSS_SELECTOR, f'{ttt}').text
+
 
     fiiDF =[]
     list_fii_DF =[]
@@ -64,7 +68,7 @@ def get_fiis():
 
 #VARIABLES TO ARCHIVE
 path_extract ="C:/web-scrapper-FII/data/raw"
-dataset_name ="planilha_geral_fii2"
+dataset_name ="planilha_geral_fii21"
 file_name = f"{path_extract}/{dataset_name}.xlsx"
 
 #RUN SCRAPPER

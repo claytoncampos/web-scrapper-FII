@@ -18,7 +18,7 @@ FIELD_TX_ADM = '/html/body/div[3]/main/section/div/div[3]/div/div/div[9]/div[2]/
 FIELD_TX_VACANCIA = '/html/body/div[3]/main/section/div/div[3]/div/div/div[10]/div[2]/div/span'
 
 #VARIABLES TO ARCHIVE
-path_load_xlsx = "C:/web-scrapper-FII/data/raw/planilha_geral_fii2.xlsx"
+path_load_xlsx = "C:/web-scrapper-FII/data/raw/planilha_geral_fii.xlsx"
 path_extract ="C:/web-scrapper-FII/data/raw"
 dataset_name ="planilha_taxas_fii"
 file_name = f"{path_extract}/{dataset_name}.xlsx"
