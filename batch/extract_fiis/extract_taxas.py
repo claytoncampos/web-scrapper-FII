@@ -18,9 +18,9 @@ FIELD_TX_ADM = '/html/body/div[3]/main/section/div/div[3]/div/div/div[9]/div[2]/
 FIELD_TX_VACANCIA = '/html/body/div[3]/main/section/div/div[3]/div/div/div[10]/div[2]/div/span'
 
 #VARIABLES TO ARCHIVE
-path_load_xlsx = "C:/web-scrapper-FII/data/raw/planilha_geral_fii.xlsx"
-path_extract ="C:/web-scrapper-FII/data/raw"
-dataset_name ="planilha_taxas_fii"
+path_load_xlsx = "C:/Users/Clayton/Desktop/web-scrapper-FII/data/raw/planilha_geral_fii_2301.xlsx"
+path_extract ="C:/Users/Clayton/Desktop/web-scrapper-FII/data/raw"
+dataset_name ="planilha_taxas_fii_2301"
 file_name = f"{path_extract}/{dataset_name}.xlsx"
 columns = [ "FUNDO","TX_ADM","TX_VACANCIA"]
 
@@ -42,8 +42,7 @@ def get_taxas(fii, FIELD_TX_ADM, FIELD_TX_VACANCIA):
             
             time.sleep(1)
             browser.get(url)
-            
-            
+
             tx_adm = browser.find_element(By.XPATH, f'{FIELD_TX_ADM}').text
             vacancia = browser.find_element(By.XPATH, f'{FIELD_TX_VACANCIA}').text
 
@@ -73,7 +72,6 @@ df_taxas = pd.DataFrame(df_taxas_extract, columns=columns, index=None)
 #CREATE ARCHIVE XLSX
 df_taxas.to_excel(file_name, index=False)
 print(f'{file_name} criada com sucesso!!')
-
 
 fim = time.time()
 print(f'tempo total: {(fim - inicio) // 60} Minutos')

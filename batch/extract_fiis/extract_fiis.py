@@ -9,36 +9,33 @@ inicio = time.time()
 
 # DISABLE VISIBLE WEB BROWSER
 options = Options()
-options.add_argument("--headless")
+#options.add_argument("--headless")
 print ("Headless Firefox Initialized")
 
 #VARIABLE TO SCRAPPER
-BTN_POPUP = '//*[@id="popup-close-button"]'
+BTN_POPUP = '//*[@class="popup-close-button"]'
 BTN_SELECT_COLS = '//*[@id="colunas-ranking__select-button"]'
 BTN_SELECT_ALL_COLS = '/html/body/div[6]/div[1]/div/div[2]/div[2]/ul/li[1]/label/span'
 COLUMN = '/html/body/div[6]/div[2]/div/div/div/table/thead/tr/th' #30
 ROW = '/html/body/div[6]/div[2]/div/div/div/table/tbody/tr' #430
 
-#ttt = '.default-fiis-table__container__table'
-
-#BTN_POPUP,BTN_SELECT_COLS,BTN_SELECT_ALL_COLS,COLUMN,ROW
 #GET FIIS
 def get_fiis():
     url = "https://www.fundsexplorer.com.br/ranking"
     browser = webdriver.Firefox(options=options)
     browser.get(url)
 
-#    time.sleep(2)
+
     browser.find_element(By.XPATH,BTN_POPUP).click()
-#    time.sleep(1)
+
     browser.find_element(By.XPATH,BTN_SELECT_COLS).click()
-#    time.sleep(1)
+
     browser.find_element(By.XPATH,BTN_SELECT_ALL_COLS).click()
-#    time.sleep(1)
+
     N_COLS = len(browser.find_elements(By.XPATH,COLUMN))
-#    time.sleep(1)
+
     N_ROWS = len(browser.find_elements(By.XPATH,ROW))
-#    table = browser.find_element(By.CSS_SELECTOR, f'{ttt}').text
+
 
 
     fiiDF =[]
@@ -49,14 +46,14 @@ def get_fiis():
     for i in range(1,N_COLS+1):
         value_col = browser.find_element(By.XPATH, f'{COLUMN}[{i}]').text
         columns.append(value_col)
-        print(columns)
+
 
     #GET VALUES ROWS TABLE
-    for r in range(1, N_ROWS+1): #N_ROWS+1 (LEMBRAR DE MUDAR PAR PEGAR TODAS LINHAS)
-        for c in range(1, N_COLS+1):
+    for row in range(1, N_ROWS+1): #N_ROWS+1 (LEMBRAR DE MUDAR PAR PEGAR TODAS LINHAS)
+        for col in range(1, N_COLS+1):
             # obtaining the text from each column of the table
-            value = browser.find_element(By.XPATH, f"{ROW}["+str(r)+"]/td["+str(c)+"]").text
-            print(value)
+            value = browser.find_element(By.XPATH, f"{ROW}["+str(row)+"]/td["+str(col)+"]").text
+
             fiiDF.append(value)
         list_fii_DF.append(fiiDF[:])
         fiiDF.clear()
@@ -67,11 +64,11 @@ def get_fiis():
     return list_fii_DF, columns
 
 #VARIABLES TO ARCHIVE
-path_extract ="C:/web-scrapper-FII/data/raw"
-dataset_name ="planilha_geral_fii21"
+path_extract ="C:/Users/Clayton/Desktop/web-scrapper-FII/data/raw"
+dataset_name ="planilha_geral_fii_2301"
 file_name = f"{path_extract}/{dataset_name}.xlsx"
 
-#RUN SCRAPPER
+#RUN SCRAPER
 data = get_fiis()
 df = data[0]
 columns = data[1]
