@@ -13,7 +13,7 @@ options = Options()
 print ("Headless Firefox Initialized")
 
 #VARIABLE TO SCRAPPER
-BTN_POPUP = '//*[@class="popup-close-button"]'
+BTN_POPUP = '//*[@id="popup-close-button"]'
 BTN_SELECT_COLS = '//*[@id="colunas-ranking__select-button"]'
 BTN_SELECT_ALL_COLS = '/html/body/div[6]/div[1]/div/div[2]/div[2]/ul/li[1]/label/span'
 COLUMN = '/html/body/div[6]/div[2]/div/div/div/table/thead/tr/th' #30
@@ -65,7 +65,7 @@ def get_fiis():
 
 #VARIABLES TO ARCHIVE
 path_extract ="C:/Users/Clayton/Desktop/web-scrapper-FII/data/raw"
-dataset_name ="planilha_geral_fii_2301"
+dataset_name ="planilha_geral_fii_2501"
 file_name = f"{path_extract}/{dataset_name}.xlsx"
 
 #RUN SCRAPER
