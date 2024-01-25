@@ -1,10 +1,13 @@
 import pandas as pd
 import time
+from  datetime import datetime
+import os
+from  pathlib import Path
 from selenium  import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 
-
+#C:\Users\Clayton\PycharmProjects\web-scrapper-FII\data\raw
 inicio = time.time()
 
 # DISABLE VISIBLE WEB BROWSER
@@ -64,9 +67,11 @@ def get_fiis():
     return list_fii_DF, columns
 
 #VARIABLES TO ARCHIVE
-path_extract ="C:/Users/Clayton/Desktop/web-scrapper-FII/data/raw"
-dataset_name ="planilha_geral_fii_2501"
-file_name = f"{path_extract}/{dataset_name}.xlsx"
+CWD = Path(__file__).parent.parent.parent
+path_extract =str(CWD) + "/data/raw"
+dataset_name =f"planilha_geral_fii_{datetime.now().date()}"
+#file_name = f"{path_extract}/{dataset_name}.xlsx"
+file_name = f"{path_extract}/{dataset_name}.csv"
 
 #RUN SCRAPER
 data = get_fiis()
@@ -75,7 +80,8 @@ columns = data[1]
 df = pd.DataFrame(df,columns=columns)
 
 #CREATE ARCHIVE XLSX
-df.to_excel(file_name, index=False)
+#df.to_excel(file_name, index=False)
+df.to_csv(file_name, index=False)
 print(f'{file_name} criada com sucesso!!')
 
 
