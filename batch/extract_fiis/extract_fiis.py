@@ -9,7 +9,7 @@ inicio = time.time()
 
 # DISABLE VISIBLE WEB BROWSER
 options = Options()
-#options.add_argument("--headless")
+options.add_argument("--headless")
 print ("Headless Firefox Initialized")
 
 #VARIABLE TO SCRAPPER
